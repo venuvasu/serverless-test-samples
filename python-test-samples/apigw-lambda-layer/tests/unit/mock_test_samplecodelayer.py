@@ -2,10 +2,10 @@
 # SPDX-License-Identifier: MIT-0
 
 import boto3
-from moto import mock_s3
+from moto import mock_aws
 from src.sampleCodeLayer.python.layer import get_s3_bucket_list_as_string
 
-@mock_s3
+@mock_aws
 def test_get_s3_bucket_list_as_string() -> None:
 
     # set up test bucket

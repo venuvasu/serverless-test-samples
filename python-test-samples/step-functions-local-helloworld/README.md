@@ -1,4 +1,4 @@
-[![python: 3.10](https://img.shields.io/badge/Python-3.10-green)](https://img.shields.io/badge/Python-3.10-green)
+[![python: 3.13](https://img.shields.io/badge/Python-3.13-green)](https://img.shields.io/badge/Python-3.13-green)
 [![AWS: Step Functions](https://img.shields.io/badge/AWS-Step%20Functions-orange)](https://img.shields.io/badge/AWS-Step%20Functions-orange)
 [![Language: ASL](https://img.shields.io/badge/Language-ASL-blue)](https://img.shields.io/badge/Language-ASL-blue)
 [![test: pytest](https://img.shields.io/badge/Test-Pytest-red)](https://img.shields.io/badge/Test-Pytest-red)
@@ -64,7 +64,7 @@ Components:
 ## Prerequisites
 - Docker
 - AWS cli (debugging)
-- Python 3.10 or newer
+- Python 3.13 or newer
 - Basic understanding of Step Functions
 - Basic understanding of Amazon States Language (ASL)
 
@@ -136,7 +136,7 @@ Expected output:
 ``` shell
 step-functions-local-helloworld/tests$ python3 -m pytest -s unit/src/test_step_functions_local.py
 ========================================================== test session starts ==========================================================
-platform linux -- Python 3.10.12, pytest-8.4.1, pluggy-1.6.0
+platform linux -- Python 3.13.0, pytest-8.4.1, pluggy-1.6.0
 rootdir: /home/ubuntu/environment/serverless-test-samples-approach-2-pytest-distributed_Try3/step-functions-local-helloworld--OK/tests
 collected 1 item                                                                                                                                                                                                                                         
 

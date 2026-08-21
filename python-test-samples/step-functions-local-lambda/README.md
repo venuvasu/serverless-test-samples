@@ -1,4 +1,4 @@
-[![python: 3.10](https://img.shields.io/badge/Python-3.10-green)](https://img.shields.io/badge/Python-3.10-green)
+[![python: 3.13](https://img.shields.io/badge/Python-3.13-green)](https://img.shields.io/badge/Python-3.13-green)
 [![AWS: Step Functions](https://img.shields.io/badge/AWS-Step%20Functions-orange)](https://img.shields.io/badge/AWS-Step%20Functions-orange)
 [![Language: ASL](https://img.shields.io/badge/Language-ASL-blue)](https://img.shields.io/badge/Language-ASL-blue)
 [![AWS: Lambda](https://img.shields.io/badge/AWS-Lambda-yellow)](https://img.shields.io/badge/AWS-Lambda-yellow)
@@ -67,7 +67,7 @@ Components:
 
 ## Prerequisites
 - Docker
-- Python 3.10 or newer (running pytest)
+- Python 3.13 or newer (running pytest)
 - AWS SAM CLI (running SAM Lambda emulator)
 - AWS CLI v2 (for debugging)
 - Basic understanding of Step Functions
@@ -167,7 +167,7 @@ Expected output:
 step-functions-local-lambda/tests$
 python3 -m pytest -s unit/src/test_step_functions_local.py
 ================================================================= test session starts =================================================================
-platform linux -- Python 3.10.12, pytest-8.3.5, pluggy-1.5.0 -- /home/ubuntu/environment/step-functions-local-lambda/tests/venv/bin/python3
+platform linux -- Python 3.13.0, pytest-8.3.5, pluggy-1.5.0 -- /home/ubuntu/environment/step-functions-local-lambda/tests/venv/bin/python3
 cachedir: .pytest_cache
 rootdir: /home/ubuntu/environment//step-functions-local-lambda/tests
 plugins: xdist-3.5.0, timeout-2.3.1

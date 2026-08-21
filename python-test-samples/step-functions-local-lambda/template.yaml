@@ -15,7 +15,7 @@ Resources:
       FunctionName: StepFunctionExampleSumLambda
       CodeUri: lambda_stepfunctions_src/lambda_stepfunctions_sum_src
       Handler: app.handler
-      Runtime: python3.10
+      Runtime: python3.13
       Environment:
         Variables:
           AWS_ACCESS_KEY_ID: DUMMYIDEXAMPLE
@@ -29,7 +29,7 @@ Resources:
       FunctionName: StepFunctionExampleSquareLambda
       CodeUri: lambda_stepfunctions_src/lambda_stepfunctions_square_src
       Handler: app.handler
-      Runtime: python3.10
+      Runtime: python3.13
       Environment:
         Variables:
           AWS_ACCESS_KEY_ID: DUMMYIDEXAMPLE

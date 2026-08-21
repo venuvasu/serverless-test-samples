@@ -1,4 +1,4 @@
-[![python: 3.9](https://img.shields.io/badge/Python-3.9-green)](https://img.shields.io/badge/Python-3.9-green)
+[![python: 3.13](https://img.shields.io/badge/Python-3.13-green)](https://img.shields.io/badge/Python-3.13-green)
 [![AWS:Step Functions](https://img.shields.io/badge/AWS-Step%20Functions-blueviolet)](https://img.shields.io/badge/Step%20Functions-blueviolet)
 [![test: unit](https://img.shields.io/badge/Test-Unit-blue)](https://img.shields.io/badge/Test-Unit-blue)
 
@@ -140,7 +140,7 @@ With the test case and mock responses configured, you can use them for testing w
 ## Unit Test
 
 ### Prerequisites
- - Python 3.9 or newer
+ - Python 3.13 or newer
  - [Docker](https://www.docker.com/)
  
 ### Test flow

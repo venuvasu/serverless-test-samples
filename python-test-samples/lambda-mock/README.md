@@ -1,4 +1,4 @@
-[![python: 3.9](https://img.shields.io/badge/Python-3.9-green)](https://img.shields.io/badge/Python-3.9-green)
+[![python: 3.13](https://img.shields.io/badge/Python-3.13-green)](https://img.shields.io/badge/Python-3.13-green)
 [![AWS: DynamoDB](https://img.shields.io/badge/AWS-DynamoDB-blueviolet)](https://img.shields.io/badge/AWS-DynamoDB-blueviolet)
 [![AWS: S#](https://img.shields.io/badge/AWS-S3-green)](https://img.shields.io/badge/AWS-AWS-S3-green)
 [![test: unit](https://img.shields.io/badge/Test-Unit-blue)](https://img.shields.io/badge/Test-Unit-blue)
@@ -77,7 +77,7 @@ The code in this project is simplified - we’ve opted for concise snippets over
 
 * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
 * [AWS Serverless Application Model (SAM) CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
-* [Python 3.9](https://www.python.org/downloads/)
+* [Python 3.13](https://www.python.org/downloads/)
 * [Make build utility](https://www.gnu.org/software/make/)
 
 [Top](#contents)

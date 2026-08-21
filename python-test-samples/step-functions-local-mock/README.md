@@ -1,4 +1,4 @@
-[![python: 3.10](https://img.shields.io/badge/Python-3.10-green)](https://img.shields.io/badge/Python-3.10-green)
+[![python: 3.13](https://img.shields.io/badge/Python-3.13-green)](https://img.shields.io/badge/Python-3.13-green)
 [![AWS: Step Functions](https://img.shields.io/badge/AWS-Step%20Functions-orange)](https://img.shields.io/badge/AWS-Step%20Functions-orange)
 [![Language: ASL](https://img.shields.io/badge/Language-ASL-blue)](https://img.shields.io/badge/Language-ASL-blue)
 [![AWS: Lambda](https://img.shields.io/badge/AWS-Lambda-yellow)](https://img.shields.io/badge/AWS-Lambda-yellow)
@@ -63,7 +63,7 @@ Components:
 
 ## Prerequisites
 - Docker
-- Python 3.10 or newer
+- Python 3.13 or newer
 - AWS CLI v2 (for debugging)
 - Basic understanding of Step Functions
 
@@ -138,7 +138,7 @@ Expected output
 step-functions-local-mock/tests$
 python3 -m pytest -s unit/src/test_step_functions_local.py
 ============================================================== test session starts ==============================================================
-platform linux -- Python 3.10.12, pytest-8.3.5, pluggy-1.5.0 -- /home/ubuntu/environment/step-functions-local-mock/tests/venv/bin/python3
+platform linux -- Python 3.13.0, pytest-8.3.5, pluggy-1.5.0 -- /home/ubuntu/environment/step-functions-local-mock/tests/venv/bin/python3
 cachedir: .pytest_cache
 rootdir: /home/ubuntu/environment/step-functions-local-mock/tests
 collected 3 items                                                                                                                               

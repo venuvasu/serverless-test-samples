@@ -20,7 +20,7 @@ Globals: # https://docs.aws.amazon.com/serverless-application-model/latest/devel
     Function:
         Timeout: 15
         MemorySize: 256
-        Runtime: python3.9
+        Runtime: python3.13
         Tracing: Active # https://docs.aws.amazon.com/lambda/latest/dg/lambda-x-ray.html
         # Embed Lambda Powertools as a shared Layer
         # See: https://awslabs.github.io/aws-lambda-powertools-python/latest/#lambda-layer

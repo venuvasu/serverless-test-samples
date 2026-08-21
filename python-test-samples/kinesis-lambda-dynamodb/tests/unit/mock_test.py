@@ -16,7 +16,7 @@ from boto3.dynamodb.conditions import Key
 import moto
 
 # Mock the DynamoDB Service during the test
-@moto.mock_dynamodb
+@moto.mock_aws
 class TestKinesisLambdaWithDynamoDB(TestCase):
     """
     Unit Test class for src/app.py

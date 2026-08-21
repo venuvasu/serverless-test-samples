@@ -1,4 +1,4 @@
-moto==4.0.7
+moto>=5.0.0
 pytest
 pytest-socket
 coverage

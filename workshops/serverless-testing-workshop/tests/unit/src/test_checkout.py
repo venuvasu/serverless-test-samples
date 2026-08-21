@@ -28,7 +28,7 @@ from schemas import OUTPUT_SCHEMA                     # pylint: disable=wrong-im
 import app
 
 # Mock the DynamoDB Service during the test
-@moto.mock_dynamodb
+@moto.mock_aws
 
 
 class TestSampleLambdaWithDynamoDB(TestCase):

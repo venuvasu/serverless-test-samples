@@ -5,10 +5,10 @@ import com.amazon.aws.sample.entity.OrderRequest;
 import com.amazon.aws.sample.entity.OrderResponse;
 import com.amazon.aws.sample.utils.DynamoDBConfig;
 import com.amazon.aws.sample.utils.Uuid;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-import com.amazonaws.services.dynamodbv2.model.GetItemRequest;
-import com.amazonaws.services.dynamodbv2.model.GetItemResult;
+import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
+import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
+import software.amazon.awssdk.services.dynamodb.model.GetItemRequest;
+import software.amazon.awssdk.services.dynamodb.model.GetItemResponse;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.amazon.aws.sample.exception.OrderException;
@@ -40,7 +40,7 @@ import static org.mockito.Mockito.verify;
 @SpringBootTest(classes = {PropertyPlaceholderAutoConfiguration.class, DynamoDBConfig.class})
 public class OrderControllerTest {
   @Mock
-  private AmazonDynamoDB amazonDynamoDBMock;
+  private DynamoDbClient dynamoDbClientMock;
   @Mock
   private DynamoDBConfig dynamoDBConfig;
   @InjectMocks
@@ -72,12 +72,14 @@ public class OrderControllerTest {
   @Test
   public void testGetStatusByUuid() throws Exception {
     String orderId = "abee61d5-e180-4d01-bdb5-f7ce31562a81";
-    GetItemResult result = new GetItemResult().withItem(Map.of("orderStatus", new AttributeValue("Order Request Sent Successfully")));
-    Mockito.lenient().when(amazonDynamoDBMock.getItem(any(GetItemRequest.class))).thenReturn(result);
+    GetItemResponse result = GetItemResponse.builder()
+            .item(Map.of("orderStatus", AttributeValue.builder().s("Order Request Sent Successfully").build()))
+            .build();
+    Mockito.lenient().when(dynamoDbClientMock.getItem(any(GetItemRequest.class))).thenReturn(result);
     dynamoDBConfig.getOrderStatus(orderId);
     ResponseEntity<String> res = ResponseEntity.ok("Order Placed");
     orderController.getStatusByUuid(orderId);
-    assertThat(result.getItem().get("orderStatus").getS()).isEqualTo("Order Request Sent Successfully");
+    assertThat(result.item().get("orderStatus").s()).isEqualTo("Order Request Sent Successfully");
   }
 
   @Test

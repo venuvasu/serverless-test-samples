@@ -2,10 +2,10 @@ package utils;
 
 import com.amazon.aws.sample.utils.AmazonDynamoDBClientBuilderService;
 import com.amazon.aws.sample.utils.DynamoDBConfig;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-import com.amazonaws.services.dynamodbv2.model.GetItemRequest;
-import com.amazonaws.services.dynamodbv2.model.GetItemResult;
+import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
+import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
+import software.amazon.awssdk.services.dynamodb.model.GetItemRequest;
+import software.amazon.awssdk.services.dynamodb.model.GetItemResponse;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -24,7 +24,7 @@ import static org.mockito.Mockito.when;
 @SpringBootTest(classes = {PropertyPlaceholderAutoConfiguration.class, DynamoDBConfig.class})
 public class DynamoDBConfigTest {
   @Mock
-  private AmazonDynamoDB amazonDynamoDBMock;
+  private DynamoDbClient dynamoDbClientMock;
   @Mock
   private AmazonDynamoDBClientBuilderService amazonDynamoDBClientBuilderService;
   @InjectMocks
@@ -35,22 +35,26 @@ public class DynamoDBConfigTest {
 
     String orderId = "abee61d5-e180-4d01-bdb5-f7ce31562a81";
 
-    when(amazonDynamoDBClientBuilderService.buildClient()).thenReturn(amazonDynamoDBMock);
+    when(amazonDynamoDBClientBuilderService.buildClient()).thenReturn(dynamoDbClientMock);
 
-    GetItemRequest request = new GetItemRequest();
-    request.setTableName("order_details");
-    request.setProjectionExpression("orderStatus");
     Map<String, AttributeValue> keysMap = new HashMap<>();
-    keysMap.put("orderId", new AttributeValue(orderId));
-    request.setKey(keysMap);
+    keysMap.put("orderId", AttributeValue.builder().s(orderId).build());
 
-    GetItemResult result = new GetItemResult();
+    GetItemRequest request = GetItemRequest.builder()
+            .tableName("order_details")
+            .projectionExpression("orderStatus")
+            .key(keysMap)
+            .build();
+
     Map<String, AttributeValue> item = new HashMap<>();
-    item.put("orderStatus", new AttributeValue().withS("Order Placed"));
-    result.setItem(item);
+    item.put("orderStatus", AttributeValue.builder().s("Order Placed").build());
 
-    when(amazonDynamoDBMock.getItem(request)).thenReturn(result);
+    GetItemResponse result = GetItemResponse.builder()
+            .item(item)
+            .build();
+
+    when(dynamoDbClientMock.getItem(request)).thenReturn(result);
     dynamoDBConfig.getOrderStatus(orderId);
-    assertThat(result.getItem().get("orderStatus").getS()).isEqualTo("Order Placed");
+    assertThat(result.item().get("orderStatus").s()).isEqualTo("Order Placed");
   }
 }

@@ -1,8 +1,7 @@
 package com.amazon.aws.sample.utils;
 
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +11,8 @@ public class AmazonDynamoDBClientServiceImpl implements AmazonDynamoDBClientBuil
     @Value("${cloud.aws.region.static}")
     private String region;
     @Override
-    public AmazonDynamoDB buildClient() {
-        return AmazonDynamoDBClientBuilder.standard()
-                .withRegion(region).build();
+    public DynamoDbClient buildClient() {
+        return DynamoDbClient.builder()
+                .region(Region.of(region)).build();
     }
 }

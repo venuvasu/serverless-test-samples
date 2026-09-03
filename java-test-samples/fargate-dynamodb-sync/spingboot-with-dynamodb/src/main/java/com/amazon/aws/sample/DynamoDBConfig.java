@@ -7,14 +7,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import com.amazon.aws.sample.model.Customer;
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDBClientBuilder;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper;
-import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapperConfig;
-import com.amazonaws.services.dynamodbv2.model.CreateTableRequest;
-import com.amazonaws.services.dynamodbv2.model.ProvisionedThroughput;
-import com.amazonaws.services.dynamodbv2.util.TableUtils;
+import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
+import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
+import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
+import software.amazon.awssdk.services.dynamodb.model.DescribeTableRequest;
+import software.amazon.awssdk.services.dynamodb.model.ResourceNotFoundException;
 
 @Configuration
 public class DynamoDBConfig {
@@ -24,22 +23,32 @@ public class DynamoDBConfig {
     public String region;
 
     @Bean
-    public DynamoDBMapper dynamoDBMapper() {
-        AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
-                .withRegion(region).build();
-        DynamoDBMapper dynamoDBMapper = new DynamoDBMapper(client, DynamoDBMapperConfig.DEFAULT);
-        init(dynamoDBMapper, client);
-        return dynamoDBMapper;
+    public DynamoDbClient dynamoDbClient() {
+        return DynamoDbClient.builder()
+                .region(Region.of(region))
+                .build();
     }
-    // Initializes the DynamoDB table for the Customer class
-    public void init(DynamoDBMapper dynamoDBMapper, AmazonDynamoDB client) {
 
-        // Generates a CreateTableRequest based on the Customer class mapping
-        CreateTableRequest tableRequest = dynamoDBMapper.generateCreateTableRequest(Customer.class);
-        tableRequest.setProvisionedThroughput(new ProvisionedThroughput(1L, 1L));
-        // Sets the provisioned throughput for the table (adjust as needed)
-        if (TableUtils.createTableIfNotExists(client, tableRequest)) {
-            // Creates the table if it doesn't already exist, logging a message on success
+    @Bean
+    public DynamoDbEnhancedClient dynamoDbEnhancedClient(DynamoDbClient dynamoDbClient) {
+        return DynamoDbEnhancedClient.builder()
+                .dynamoDbClient(dynamoDbClient)
+                .build();
+    }
+
+    @Bean
+    public DynamoDbTable<Customer> customerTable(DynamoDbEnhancedClient enhancedClient, DynamoDbClient dynamoDbClient) {
+        DynamoDbTable<Customer> table = enhancedClient.table("Customer", TableSchema.fromBean(Customer.class));
+        init(table, dynamoDbClient);
+        return table;
+    }
+
+    // Initializes the DynamoDB table for the Customer class
+    public void init(DynamoDbTable<Customer> table, DynamoDbClient dynamoDbClient) {
+        try {
+            dynamoDbClient.describeTable(DescribeTableRequest.builder().tableName("Customer").build());
+        } catch (ResourceNotFoundException e) {
+            table.createTable();
             logger.info("Table created successfully");
         }
     }

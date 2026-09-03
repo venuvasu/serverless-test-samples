@@ -9,7 +9,7 @@ import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent;
 import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyResponseEvent;
-import com.amazonaws.util.StringUtils;
+import software.amazon.awssdk.utils.StringUtils;
 import com.amazonaws.xray.interceptors.TracingInterceptor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -59,7 +59,7 @@ public class App implements RequestHandler<APIGatewayProxyRequestEvent, APIGatew
       .withHeaders(headers);
 
     if (
-      !StringUtils.isNullOrEmpty(event.getHttpMethod()) &&
+      !StringUtils.isEmpty(event.getHttpMethod()) &&
       !SdkHttpMethod.GET.name().equalsIgnoreCase(event.getHttpMethod())
     ) {
       logger.error("Http Method " + event.getHttpMethod() + " is not supported");

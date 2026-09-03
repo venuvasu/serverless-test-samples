@@ -3,12 +3,12 @@ package com.amazon.aws.sample.sqs;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.amazonaws.regions.Regions;
-import com.amazonaws.services.sqs.AmazonSQS;
-import com.amazonaws.services.sqs.AmazonSQSClientBuilder;
-import com.amazonaws.services.sqs.model.AmazonSQSException;
-import com.amazonaws.services.sqs.model.CreateQueueResult;
-import com.amazonaws.services.sqs.model.SendMessageRequest;
+import software.amazon.awssdk.regions.Region;
+import software.amazon.awssdk.services.sqs.SqsClient;
+import software.amazon.awssdk.services.sqs.model.CreateQueueRequest;
+import software.amazon.awssdk.services.sqs.model.GetQueueUrlRequest;
+import software.amazon.awssdk.services.sqs.model.QueueNameExistsException;
+import software.amazon.awssdk.services.sqs.model.SendMessageRequest;
 
 @Service
 public class SqsService {
@@ -19,23 +19,22 @@ public class SqsService {
     public String queueMessage;
 
     public void sendMessage(){
-        final AmazonSQS sqs = AmazonSQSClientBuilder.standard()
-                .withRegion(Regions.US_EAST_1).build();
+        final SqsClient sqs = SqsClient.builder()
+                .region(Region.US_EAST_1).build();
 
         try {
-            CreateQueueResult createResult = sqs.createQueue(queueName);
-        } catch (AmazonSQSException e) {
-            if (!e.getErrorCode().equals("QueueAlreadyExists")) {
-                throw e;
-            }
+            sqs.createQueue(CreateQueueRequest.builder().queueName(queueName).build());
+        } catch (QueueNameExistsException e) {
+            // Queue already exists, ignore
         }
 
-        String queueUrl = sqs.getQueueUrl(queueName).getQueueUrl();
+        String queueUrl = sqs.getQueueUrl(GetQueueUrlRequest.builder().queueName(queueName).build()).queueUrl();
 
-        SendMessageRequest sendMsgRequest = new SendMessageRequest()
-                .withQueueUrl(queueUrl)
-                .withMessageBody(queueMessage)
-                .withDelaySeconds(5);
+        SendMessageRequest sendMsgRequest = SendMessageRequest.builder()
+                .queueUrl(queueUrl)
+                .messageBody(queueMessage)
+                .delaySeconds(5)
+                .build();
         sqs.sendMessage(sendMsgRequest);
     }
 }

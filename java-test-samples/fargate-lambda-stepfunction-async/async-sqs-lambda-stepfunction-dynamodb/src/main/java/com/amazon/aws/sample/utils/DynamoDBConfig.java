@@ -1,9 +1,9 @@
 package com.amazon.aws.sample.utils;
 
-import com.amazonaws.services.dynamodbv2.AmazonDynamoDB;
-import com.amazonaws.services.dynamodbv2.model.AttributeValue;
-import com.amazonaws.services.dynamodbv2.model.GetItemRequest;
-import com.amazonaws.services.dynamodbv2.model.GetItemResult;
+import software.amazon.awssdk.services.dynamodb.DynamoDbClient;
+import software.amazon.awssdk.services.dynamodb.model.AttributeValue;
+import software.amazon.awssdk.services.dynamodb.model.GetItemRequest;
+import software.amazon.awssdk.services.dynamodb.model.GetItemResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
@@ -22,20 +22,21 @@ public class DynamoDBConfig {
      * @return
      */
     public String getOrderStatus(String orderId) {
-        AmazonDynamoDB client = amazonDynamoDBClientBuilderService.buildClient();
-        GetItemRequest request = new GetItemRequest();
+        DynamoDbClient client = amazonDynamoDBClientBuilderService.buildClient();
 
-        /* Setting Table Name */
-        request.setTableName("order_details");
-        /* Setting Name of attributes to Get */
-        request.setProjectionExpression("orderStatus");
         /* Create a Map of Primary Key attributes */
         Map<String, AttributeValue> keysMap = new HashMap<>();
-        keysMap.put("orderId", new AttributeValue(orderId));
-        request.setKey(keysMap);
+        keysMap.put("orderId", AttributeValue.builder().s(orderId).build());
+
+        GetItemRequest request = GetItemRequest.builder()
+                .tableName("order_details")
+                .projectionExpression("orderStatus")
+                .key(keysMap)
+                .build();
+
         /* Send Get Item Request */
-        GetItemResult result = client.getItem(request);
-        return String.valueOf(result.getItem().get("orderStatus").getS());
+        GetItemResponse result = client.getItem(request);
+        return String.valueOf(result.item().get("orderStatus").s());
     }
 
 }

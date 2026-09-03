@@ -18,7 +18,7 @@
         <maven.compiler.plugin.version>3.6.1</maven.compiler.plugin.version>
         <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>
 
-        <aws.java.sdk.version>2.20.92</aws.java.sdk.version>
+        <aws.java.sdk.version>2.29.0</aws.java.sdk.version>
         <aws.lambda.java.core.version>1.2.2</aws.lambda.java.core.version>
         <aws.lambda.java.events.version>3.11.2</aws.lambda.java.events.version>
 

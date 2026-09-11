@@ -40,7 +40,7 @@ The SAM CLI is an extension of the AWS CLI that adds functionality for building 
 To use the SAM CLI, you need the following tools.
 
 * SAM CLI - [Install the SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
-* .NET 8 - [Install .NET 8](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+* .NET 10 - [Install .NET 10](https://dotnet.microsoft.com/en-us/download/dotnet/10.0)
 * Docker - [Install Docker community edition](https://hub.docker.com/search/?type=edition&offering=community)
 
 [[top]](#dotnet-test-samples)
@@ -508,7 +508,7 @@ Globals:
   Function:
 #    Tracing: PassThrough
     Timeout: 10
-    Runtime: dotnet8
+    Runtime: dotnet10
     Architectures:
       - arm64
 #  Api:

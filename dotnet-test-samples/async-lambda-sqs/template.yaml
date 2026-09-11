@@ -8,7 +8,7 @@ Globals:
   Function:
     MemorySize: 256
     Architectures: [arm64]
-    Runtime: dotnet8
+    Runtime: dotnet10
     Timeout: 300
     Tracing: Active
 Parameters: 

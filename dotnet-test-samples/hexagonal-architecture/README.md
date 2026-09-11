@@ -28,7 +28,7 @@ This pattern creates an Amazon API Gateway HTTP API, an AWS Lambda function, and
 **Important: this application uses various AWS services and there are costs associated with these services after the Free Tier usage. Please see the AWS Pricing page for details. You are responsible for any AWS costs incurred.**
 
 ## Language
-.NET 8
+.NET 10
 
 ## Framework
 The framework used to deploy the infrastructure is SAM
@@ -218,5 +218,5 @@ It uses the [IClassFixture](https://xunit.net/docs/shared-context) feature of [x
 * [AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html) installed and configured
 * [Git Installed](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * [AWS Serverless Application Model](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html) (AWS SAM) installed
-* [.NET 8](https://dotnet.microsoft.com/en-us/download/dotnet) installed
+* [.NET 10](https://dotnet.microsoft.com/en-us/download/dotnet) installed
 * [Fixer.io -  3rd party service to retrieve real-time currencies value for this example](https://fixer.io/)

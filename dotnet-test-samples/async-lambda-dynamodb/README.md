@@ -39,7 +39,7 @@ The SAM CLI is an extension of the AWS CLI that adds functionality for building 
 To use the SAM CLI, you need the following tools.
 
 - SAM CLI - [Install the SAM CLI](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-sam-cli-install.html)
-- .NET 8 - [Install .NET 8](https://dotnet.microsoft.com/en-us/download)
+- .NET 10 - [Install .NET 10](https://dotnet.microsoft.com/en-us/download)
 
 [[top]](#asynchronous-integration-test-with-lambda-event-listener-and-dynamodb)
 

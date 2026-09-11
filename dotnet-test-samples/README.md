@@ -12,7 +12,7 @@ This portion of the repository contains code samples for testing serverless appl
 |[Hexagonal Architecture](./hexagonal-architecture)|An example of hexagonal architecture implemented using AWS Lambda with tests.|
 |[Kinesis Data Streams](./kinesis-lambda-dynamodb/)|This project contains unit and integration tests for a pattern using Kinesis Data Streams, AWS Lambda and Amazon DynamoDB.|
 |[SQS with AWS Lambda and DynamoDb](./sqs-lambda)|This project contains unit and integration tests for AWS Lambda that is invoked by Amazon Simple Queue Service (SQS)|
-|[Local testing using containers](./test-containers)|This pattern creates an Amazon API Gateway HTTP API, an AWS Lambda function, and a DynamoDB Table using SAM and .NET 8. It also demonstrates how you can use a local emulated version of DynamoDB to increase the speed of feedback loops as you make changes to your application code.|
+|[Local testing using containers](./test-containers)|This pattern creates an Amazon API Gateway HTTP API, an AWS Lambda function, and a DynamoDB Table using SAM and .NET 10. It also demonstrates how you can use a local emulated version of DynamoDB to increase the speed of feedback loops as you make changes to your application code.|
 |[Load Testing](./load-testing)|A description of how load testing can be carried out before deploying to production | 
 
 ## Test Asynchronous Architectures

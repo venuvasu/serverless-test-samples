@@ -1,4 +1,4 @@
-FROM adoptopenjdk/openjdk11:alpine-jre
+FROM amazoncorretto:11
 # Refer to Maven build -> finalName
 ARG JAR_FILE=target/spring-dynamodb-0.0.1-SNAPSHOT.jar
 

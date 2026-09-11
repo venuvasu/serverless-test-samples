@@ -1,4 +1,4 @@
-FROM openjdk:17-alpine
+FROM amazoncorretto:17
 
 # Refer to Maven build -> finalName
 ARG JAR_FILE=target/async-sqs-lambda-stepfunction-dynamodb-0.0.1-SNAPSHOT.jar

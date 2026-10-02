@@ -10,7 +10,7 @@ Resources:
     Type: AWS::Serverless::Function
     Properties:
       Handler: com.example.App::handleRequest
-      Runtime: java11
+      Runtime: java21
       Tracing: Active
       Architectures:
         - x86_64

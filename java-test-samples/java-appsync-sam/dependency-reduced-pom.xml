@@ -21,7 +21,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.2</version>
+        <version>3.2.5</version>
         <configuration>
           <excludes>
             <exclude>IntegrationTest.java</exclude>
@@ -33,14 +33,14 @@
   <dependencies>
     <dependency>
       <groupId>org.mockito</groupId>
-      <artifactId>mockito-inline</artifactId>
-      <version>4.8.0</version>
+      <artifactId>mockito-core</artifactId>
+      <version>5.14.2</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>4.8.0</version>
+      <version>5.14.2</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -60,7 +60,7 @@
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-junit-jupiter</artifactId>
-      <version>4.8.0</version>
+      <version>5.14.2</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -114,12 +114,12 @@
     </dependencies>
   </dependencyManagement>
   <properties>
-    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.target>21</maven.compiler.target>
     <aws.java.sdk.version>2.18.16</aws.java.sdk.version>
     <slf4j.version>1.7.28</slf4j.version>
-    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.source>21</maven.compiler.source>
     <junit5.version>5.8.1</junit5.version>
-    <maven.compiler.plugin.version>3.6.1</maven.compiler.plugin.version>
+    <maven.compiler.plugin.version>3.13.0</maven.compiler.plugin.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.shade.plugin.version>3.2.1</maven.shade.plugin.version>
     <exec-maven-plugin.version>1.6.0</exec-maven-plugin.version>

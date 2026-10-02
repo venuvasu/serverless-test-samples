@@ -69,7 +69,7 @@ Resources:
   ToUpperCaseHandlerFunction:
     Type: AWS::Serverless::Function
     Properties:
-      Runtime: java17
+      Runtime: java21
       Handler: com.amazon.aws.sample.ToUpperCaseHandler::handleRequest
       Timeout: 60
       MemorySize: 1024
@@ -100,7 +100,7 @@ Resources:
     Type: AWS::Serverless::Function
     Condition: CreateTestResources
     Properties:
-      Runtime: java17
+      Runtime: java21
       Handler: com.amazon.aws.sample.TransformationHandler::handleRequest
       Timeout: 60
       MemorySize: 1024
